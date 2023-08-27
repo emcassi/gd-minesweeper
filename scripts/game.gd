@@ -12,6 +12,8 @@ enum STATES {
 @onready var field = $Field
 @onready var timer_label = $Panel/TimerLabel
 @onready var button = $Panel/Button
+@onready var final_label = $FinalLabel
+@onready var win_particles = $WinParticles
 
 @onready var default_tex = preload('res://sprites/emoji/btn_default.png')
 @onready var peek_tex = preload('res://sprites/emoji/btn_peek.png')
@@ -128,10 +130,15 @@ func start_game():
 	
 func win():
 	game_over = true
+	final_label.text = "YOU WIN!"
+	final_label.visible = true
+	win_particles.emitting = true
 	set_state(STATES.WIN)
 	
 func lose():
 	game_over = true
+	final_label.text = "YOU LOSE!"
+	final_label.visible = true
 	set_state(STATES.LOSE)
 	
 func set_state(s: STATES):

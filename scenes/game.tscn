@@ -1,7 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3o667o2o3kv"]
+[gd_scene load_steps=11 format=3 uid="uid://b3o667o2o3kv"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_gop8t"]
 [ext_resource type="Texture2D" uid="uid://fiktc8rlnh1s" path="res://sprites/emoji/btn_default.png" id="2_5cr1m"]
+
+[sub_resource type="Gradient" id="Gradient_5d6rg"]
+colors = PackedColorArray(0, 0.960784, 0.921569, 1, 0.980392, 0.952941, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_37m57"]
+gradient = SubResource("Gradient_5d6rg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vsu33"]
+emission_shape = 2
+emission_sphere_radius = 128.0
+particle_flag_disable_z = true
+spread = 84.79
+gravity = Vector3(0, 98, 0)
+angular_velocity_min = 0.85
+angular_velocity_max = 0.85
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_max = 61.05
+scale_min = 0.0
+scale_max = 3.0
+color = Color(0.964706, 0.929412, 0.32549, 1)
+color_ramp = SubResource("GradientTexture1D_37m57")
+turbulence_noise_strength = 18.05
+turbulence_noise_scale = 10.0
+turbulence_noise_speed_random = 6.74
+
+[sub_resource type="Theme" id="Theme_ef2hn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7bg23"]
+bg_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_v3aiu"]
 font_size = 38
@@ -16,10 +46,18 @@ script = ExtResource("1_gop8t")
 
 [node name="Field" type="Node2D" parent="."]
 
+[node name="WinParticles" type="GPUParticles2D" parent="."]
+position = Vector2(355, 128)
+emitting = false
+amount = 1500
+process_material = SubResource("ParticleProcessMaterial_vsu33")
+
 [node name="Panel" type="Panel" parent="."]
 offset_left = -6.0
 offset_right = 725.0
 offset_bottom = 80.0
+theme = SubResource("Theme_ef2hn")
+theme_override_styles/panel = SubResource("StyleBoxFlat_7bg23")
 
 [node name="TimerLabel" type="Label" parent="Panel"]
 layout_mode = 0
@@ -45,9 +83,10 @@ icon = ExtResource("2_5cr1m")
 [node name="FinalLabel" type="Label" parent="."]
 visible = false
 offset_left = 90.0
-offset_top = 279.0
+offset_top = 264.0
 offset_right = 631.0
-offset_bottom = 457.0
+offset_bottom = 442.0
+text = "YOU WIN!"
 label_settings = SubResource("LabelSettings_g6lyt")
 horizontal_alignment = 1
 vertical_alignment = 1
