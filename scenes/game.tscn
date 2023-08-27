@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3o667o2o3kv"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_gop8t"]
+[ext_resource type="Texture2D" uid="uid://fiktc8rlnh1s" path="res://sprites/emoji/btn_default.png" id="2_5cr1m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v3aiu"]
+font_size = 38
+
+[sub_resource type="Theme" id="Theme_57shs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g6lyt"]
+font_size = 90
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_gop8t")
+
+[node name="Field" type="Node2D" parent="."]
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -6.0
+offset_right = 725.0
+offset_bottom = 80.0
+
+[node name="TimerLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 7.0
+offset_right = 712.0
+offset_bottom = 73.0
+text = "0"
+label_settings = SubResource("LabelSettings_v3aiu")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 6.0
+offset_right = 470.0
+offset_bottom = 142.0
+scale = Vector2(0.5, 0.5)
+theme = SubResource("Theme_57shs")
+icon = ExtResource("2_5cr1m")
+
+[node name="FinalLabel" type="Label" parent="."]
+visible = false
+offset_left = 90.0
+offset_top = 279.0
+offset_right = 631.0
+offset_bottom = 457.0
+label_settings = SubResource("LabelSettings_g6lyt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
